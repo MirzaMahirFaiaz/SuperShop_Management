@@ -15,6 +15,8 @@ public class ShekorShop_Management {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Loading ld= new Loading();
+        ld.setVisible(true);
         // TODO code application logic here
     }
     
