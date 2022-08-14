@@ -65,7 +65,7 @@ pbThead t1;
                 }
             }
             dispose();
-            //setvisible obj
+            new Login().setVisible(true);
         
         }
     }
