@@ -9,7 +9,7 @@ CREATE TABLE Users(
 )
 
 
-INSERT INTO Users VALUES ('admin','admin','admin')
+INSERT INTO Users VALUES ('MIRZA','admin','admin')
 
 
 select * from Users
