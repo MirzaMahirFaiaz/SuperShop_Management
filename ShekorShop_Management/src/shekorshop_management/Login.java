@@ -212,6 +212,16 @@ public class Login extends javax.swing.JFrame {
             if( conpass.equals(pass) && con_user_type.equals(user_type) ){
                 JOptionPane.showMessageDialog(null, "Log In Successful.", "Info", JOptionPane.INFORMATION_MESSAGE);
                 
+                
+                if(user_type.equals("admin")){
+                    dispose();
+                    Admin_Home ah = new Admin_Home();
+                    ah.setVisible(true);
+                }
+                else{
+                    //seller j frame set visible
+                }
+                
             } 
             else
                 JOptionPane.showMessageDialog(null, "Invalid Username/Password/User Type ...", "Error", JOptionPane.INFORMATION_MESSAGE);
