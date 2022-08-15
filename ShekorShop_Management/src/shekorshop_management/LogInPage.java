@@ -113,23 +113,41 @@ public class LogInPage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         jLabel4.setText("Password:");
 
+<<<<<<< HEAD:ShekorShop_Management/src/shekorshop_management/LogInPage.java
         jPasswordField.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+=======
+        jButtonLogIn.setBackground(new java.awt.Color(0, 44, 62));
+        jButtonLogIn.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jButtonLogIn.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLogIn.setText("Log In");
+        jButtonLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogInActionPerformed(evt);
+            }
+        });
+
+>>>>>>> 91f9e6860d1339c48da7294ded4996dd74551e6b:ShekorShop_Management/src/shekorshop_management/Login.java
         jPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD:ShekorShop_Management/src/shekorshop_management/LogInPage.java
         LogIn.setBackground(new java.awt.Color(0, 44, 62));
         LogIn.setFont(new java.awt.Font("Segoe UI Emoji", 1, 18)); // NOI18N
         LogIn.setForeground(new java.awt.Color(255, 255, 255));
         LogIn.setText("LogIn");
         LogIn.addActionListener(new java.awt.event.ActionListener() {
+=======
+        jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> 91f9e6860d1339c48da7294ded4996dd74551e6b:ShekorShop_Management/src/shekorshop_management/Login.java
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogInActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD:ShekorShop_Management/src/shekorshop_management/LogInPage.java
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -137,6 +155,45 @@ public class LogInPage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(93, 93, 93)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+=======
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxUserType, 0, 202, Short.MAX_VALUE)
+                            .addComponent(jPasswordField)
+                            .addComponent(jTextFieldUserName)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(88, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(211, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBoxUserType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+>>>>>>> 91f9e6860d1339c48da7294ded4996dd74551e6b:ShekorShop_Management/src/shekorshop_management/Login.java
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2))
@@ -224,6 +281,7 @@ public class LogInPage extends javax.swing.JFrame {
             
             if( conpass.equals(pass) && con_user_type.equals(user_type) ){
                 JOptionPane.showMessageDialog(null, "Log In Successful.", "Info", JOptionPane.INFORMATION_MESSAGE);
+<<<<<<< HEAD:ShekorShop_Management/src/shekorshop_management/LogInPage.java
                 if("admin".equals(user_type)){
                     dispose();
                     new AdminCtrlUser().setVisible(true);
@@ -233,6 +291,19 @@ public class LogInPage extends javax.swing.JFrame {
                     new UserFirstPage().setVisible(true);
                     
                 }
+=======
+                
+                
+                if(user_type.equals("admin")){
+                    dispose();
+                    Admin_Home ah = new Admin_Home();
+                    ah.setVisible(true);
+                }
+                else{
+                    //seller j frame set visible
+                }
+                
+>>>>>>> 91f9e6860d1339c48da7294ded4996dd74551e6b:ShekorShop_Management/src/shekorshop_management/Login.java
             } 
             else
                 JOptionPane.showMessageDialog(null, "Invalid Username/Password/User Type ...", "Error", JOptionPane.INFORMATION_MESSAGE);

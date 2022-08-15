@@ -65,7 +65,12 @@ pbThead t1;
                 }
             }
             dispose();
+<<<<<<< HEAD
             new LogInPage().setVisible(true);
+=======
+            Login li = new Login();
+            li.setVisible(true);
+>>>>>>> 91f9e6860d1339c48da7294ded4996dd74551e6b
         
         }
     }
