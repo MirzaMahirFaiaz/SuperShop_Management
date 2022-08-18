@@ -46,9 +46,9 @@
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonEditSeller1" min="-2" pref="225" max="-2" attributes="0"/>
+                      <Component id="jButtonEditUsers" min="-2" pref="225" max="-2" attributes="0"/>
                       <Component id="jButtonAddStock" min="-2" pref="225" max="-2" attributes="0"/>
-                      <Component id="jButtonEditSeller" min="-2" pref="225" max="-2" attributes="0"/>
+                      <Component id="jButtonEditSupplier" min="-2" pref="225" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="192" max="32767" attributes="0"/>
               </Group>
@@ -61,10 +61,10 @@
                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                   <Component id="jButtonAddStock" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jButtonEditSeller1" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="jButtonEditUsers" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jButtonEditSeller" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jButtonEditSupplier" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace pref="312" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -171,7 +171,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddStockActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonEditSeller">
+        <Component class="javax.swing.JButton" name="jButtonEditSupplier">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="3e" green="2c" red="0" type="rgb"/>
@@ -185,10 +185,10 @@
             <Property name="text" type="java.lang.String" value="Edit Supplier"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditSellerActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditSupplierActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonEditSeller1">
+        <Component class="javax.swing.JButton" name="jButtonEditUsers">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="3e" green="2c" red="0" type="rgb"/>
@@ -199,10 +199,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Edit Seller"/>
+            <Property name="text" type="java.lang.String" value="Edit Users"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditSeller1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditUsersActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

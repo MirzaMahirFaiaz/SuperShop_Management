@@ -33,8 +33,8 @@ public class Admin_Home extends javax.swing.JFrame {
         jButtonLogOut = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jButtonAddStock = new javax.swing.JButton();
-        jButtonEditSeller = new javax.swing.JButton();
-        jButtonEditSeller1 = new javax.swing.JButton();
+        jButtonEditSupplier = new javax.swing.JButton();
+        jButtonEditUsers = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -97,23 +97,23 @@ public class Admin_Home extends javax.swing.JFrame {
             }
         });
 
-        jButtonEditSeller.setBackground(new java.awt.Color(0, 44, 62));
-        jButtonEditSeller.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
-        jButtonEditSeller.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEditSeller.setText("Edit Supplier");
-        jButtonEditSeller.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditSupplier.setBackground(new java.awt.Color(0, 44, 62));
+        jButtonEditSupplier.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jButtonEditSupplier.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEditSupplier.setText("Edit Supplier");
+        jButtonEditSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditSellerActionPerformed(evt);
+                jButtonEditSupplierActionPerformed(evt);
             }
         });
 
-        jButtonEditSeller1.setBackground(new java.awt.Color(0, 44, 62));
-        jButtonEditSeller1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
-        jButtonEditSeller1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEditSeller1.setText("Edit Seller");
-        jButtonEditSeller1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEditUsers.setBackground(new java.awt.Color(0, 44, 62));
+        jButtonEditUsers.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jButtonEditUsers.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEditUsers.setText("Edit Users");
+        jButtonEditUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditSeller1ActionPerformed(evt);
+                jButtonEditUsersActionPerformed(evt);
             }
         });
 
@@ -125,9 +125,9 @@ public class Admin_Home extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(183, 183, 183)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonEditSeller1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEditSeller, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonEditSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 192, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,10 +137,10 @@ public class Admin_Home extends javax.swing.JFrame {
                 .addGap(112, 112, 112)
                 .addComponent(jButtonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(jButtonEditSeller1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonEditUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(jButtonEditSeller, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonEditSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(312, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,11 +168,11 @@ public class Admin_Home extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButtonAddStockActionPerformed
 
-    private void jButtonEditSellerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditSellerActionPerformed
+    private void jButtonEditSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditSupplierActionPerformed
         dispose();
-        Edit_Seller es = new Edit_Seller();
+        Edit_Supplier es = new Edit_Supplier();
         es.setVisible(true);
-    }//GEN-LAST:event_jButtonEditSellerActionPerformed
+    }//GEN-LAST:event_jButtonEditSupplierActionPerformed
 
     private void jButtonLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogOutActionPerformed
         
@@ -182,9 +182,11 @@ public class Admin_Home extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButtonLogOutActionPerformed
 
-    private void jButtonEditSeller1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditSeller1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEditSeller1ActionPerformed
+    private void jButtonEditUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditUsersActionPerformed
+        dispose();
+        Edit_User es = new Edit_User();
+        es.setVisible(true);
+    }//GEN-LAST:event_jButtonEditUsersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,8 +225,8 @@ public class Admin_Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddStock;
-    private javax.swing.JButton jButtonEditSeller;
-    private javax.swing.JButton jButtonEditSeller1;
+    private javax.swing.JButton jButtonEditSupplier;
+    private javax.swing.JButton jButtonEditUsers;
     private javax.swing.JButton jButtonLogOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;

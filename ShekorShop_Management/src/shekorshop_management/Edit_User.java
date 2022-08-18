@@ -20,12 +20,12 @@ import javax.swing.text.View;
  *
  * @author Acer
  */
-public class Edit_Seller extends javax.swing.JFrame {
+public class Edit_User extends javax.swing.JFrame {
 
     /**
      * Creates new form Edit_Seller
      */
-    public Edit_Seller() {
+    public Edit_User() {
         initComponents();
         connectDB();
     }
@@ -68,7 +68,7 @@ public class Edit_Seller extends javax.swing.JFrame {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(Edit_Seller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -383,7 +383,7 @@ public class Edit_Seller extends javax.swing.JFrame {
 
         try {
                 //String query = "SELECT * FROM Users WHERE USERNAME='" + jTextFieldSearchQuery.getText() + "' order by USERNAME";
-                String query = "SELECT * FROM USERS WHERE USERNAME LIKE '"+jTextFieldSearchQuery.getText()+"%'";
+                String query = "SELECT * FROM USERS WHERE USERNAME LIKE '%"+jTextFieldSearchQuery.getText()+"%'";
                 PreparedStatement ps;
 
                 ps = connection.prepareStatement(query);
@@ -513,7 +513,7 @@ public class Edit_Seller extends javax.swing.JFrame {
             clear();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Edit_Seller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Something Went Wrong...", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
@@ -550,7 +550,7 @@ public class Edit_Seller extends javax.swing.JFrame {
                 
 
             } catch (SQLException ex) {
-                Logger.getLogger(Edit_Seller.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Something went wrong....", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
         }
@@ -587,7 +587,7 @@ public class Edit_Seller extends javax.swing.JFrame {
             clear();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Edit_Seller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Something Went Wrong...", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonADDActionPerformed
@@ -609,20 +609,21 @@ public class Edit_Seller extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Edit_Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Edit_Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Edit_Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Edit_Seller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_User.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Edit_Seller().setVisible(true);
+                new Edit_User().setVisible(true);
             }
         });
     }
