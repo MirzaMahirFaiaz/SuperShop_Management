@@ -137,7 +137,9 @@ public class Admin_Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddStockActionPerformed
-
+        dispose();
+        Admin_Stock ac = new Admin_Stock();
+        ac.setVisible(true);
         
 
     }//GEN-LAST:event_jButtonAddStockActionPerformed
