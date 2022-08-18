@@ -31,8 +31,10 @@ public class Admin_Home extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jButtonLogOut = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jButtonAddStock = new javax.swing.JButton();
         jButtonEditSeller = new javax.swing.JButton();
+        jButtonEditSeller1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -52,6 +54,10 @@ public class Admin_Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("©2022");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -63,7 +69,10 @@ public class Admin_Home extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(81, 81, 81)
-                        .addComponent(jButtonLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(jLabel6)))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -73,7 +82,9 @@ public class Admin_Home extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
                 .addComponent(jButtonLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jButtonAddStock.setBackground(new java.awt.Color(0, 44, 62));
@@ -89,10 +100,20 @@ public class Admin_Home extends javax.swing.JFrame {
         jButtonEditSeller.setBackground(new java.awt.Color(0, 44, 62));
         jButtonEditSeller.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         jButtonEditSeller.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEditSeller.setText("Edit Seller");
+        jButtonEditSeller.setText("Edit Supplier");
         jButtonEditSeller.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonEditSellerActionPerformed(evt);
+            }
+        });
+
+        jButtonEditSeller1.setBackground(new java.awt.Color(0, 44, 62));
+        jButtonEditSeller1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jButtonEditSeller1.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEditSeller1.setText("Edit Seller");
+        jButtonEditSeller1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditSeller1ActionPerformed(evt);
             }
         });
 
@@ -104,6 +125,7 @@ public class Admin_Home extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(183, 183, 183)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonEditSeller1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditSeller, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 192, Short.MAX_VALUE))
@@ -114,7 +136,9 @@ public class Admin_Home extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(jButtonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addGap(42, 42, 42)
+                .addComponent(jButtonEditSeller1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(jButtonEditSeller, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -158,6 +182,10 @@ public class Admin_Home extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButtonLogOutActionPerformed
 
+    private void jButtonEditSeller1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditSeller1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEditSeller1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -196,8 +224,10 @@ public class Admin_Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddStock;
     private javax.swing.JButton jButtonEditSeller;
+    private javax.swing.JButton jButtonEditSeller1;
     private javax.swing.JButton jButtonLogOut;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
