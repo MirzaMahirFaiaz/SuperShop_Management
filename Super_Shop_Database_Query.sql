@@ -62,7 +62,7 @@ Create Table Buy(
 
 INSERT INTO Users VALUES ('admin','admin','admin')
 
-INSERT INTO Supplier VALUES ('Coca-Cola','01725697841','Tejgong')
+INSERT INTO Supplier VALUES ('01725697841','Coca-Cola','Tejgong')
 
 
 select * from Supplier
