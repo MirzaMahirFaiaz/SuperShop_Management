@@ -120,12 +120,14 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jPasswordField.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         jPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordFieldActionPerformed(evt);
             }
         });
 
+        jTextFieldUserName.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
         jTextFieldUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldUserNameActionPerformed(evt);

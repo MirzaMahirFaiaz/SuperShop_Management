@@ -162,7 +162,7 @@ public class Admin_Home extends javax.swing.JFrame {
 
     private void jButtonAddStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddStockActionPerformed
         dispose();
-        Admin_Stock ac = new Admin_Stock();
+        Admin_Stocks ac = new Admin_Stocks();
         ac.setVisible(true);
         
 
