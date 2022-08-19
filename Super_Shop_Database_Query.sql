@@ -19,7 +19,7 @@ Create Table Chalan(
 	Chalan_ID int primary key identity (10001,1),
 	Chalan_Date Date not null,
 	P_Quantity int not null,
-	Exp_Date Date not null
+	Exp_Date Date
 	
 )
 
@@ -43,6 +43,8 @@ Create Table S_Chalan_P(
 )
 
 
+
+
 Create Table Customer(
 	C_ID int primary key identity(1,1)not null,
 	C_Phone Varchar(11) UNIQUE NOT NULL,
@@ -64,5 +66,19 @@ INSERT INTO Users VALUES ('admin','admin','admin')
 
 INSERT INTO Supplier VALUES ('01725697841','Coca-Cola','Tejgong')
 
+Insert into Stock values ('Pepsi 250ml',50,NULL,NULL)
+Insert into Stock values ('Coca-Cola 250ml',50,NULL,NULL)
 
-select * from Supplier
+
+
+select * from Stock
+
+SELECT S_Quantity from Stock where P_ID = 1
+
+Alter table Chalan
+Alter column Exp_Date Date
+
+
+SELECT IDENT_CURRENT('Chalan')
+
+
