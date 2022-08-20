@@ -35,6 +35,7 @@ public class Admin_Home extends javax.swing.JFrame {
         jButtonAddStock = new javax.swing.JButton();
         jButtonEditSupplier = new javax.swing.JButton();
         jButtonEditUsers = new javax.swing.JButton();
+        jButtonViewStock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -117,6 +118,16 @@ public class Admin_Home extends javax.swing.JFrame {
             }
         });
 
+        jButtonViewStock.setBackground(new java.awt.Color(0, 44, 62));
+        jButtonViewStock.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jButtonViewStock.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonViewStock.setText("View Stock");
+        jButtonViewStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonViewStockActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,7 +138,8 @@ public class Admin_Home extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonEditUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEditSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonEditSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonViewStock, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 192, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,7 +152,9 @@ public class Admin_Home extends javax.swing.JFrame {
                 .addComponent(jButtonEditUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(jButtonEditSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(312, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(jButtonViewStock, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,6 +202,10 @@ public class Admin_Home extends javax.swing.JFrame {
         es.setVisible(true);
     }//GEN-LAST:event_jButtonEditUsersActionPerformed
 
+    private void jButtonViewStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewStockActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonViewStockActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,6 +246,7 @@ public class Admin_Home extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEditSupplier;
     private javax.swing.JButton jButtonEditUsers;
     private javax.swing.JButton jButtonLogOut;
+    private javax.swing.JButton jButtonViewStock;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
