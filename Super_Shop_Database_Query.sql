@@ -33,9 +33,9 @@ Create Table Stock(
 
 
 Create Table S_Chalan_P(
-	S_Phone Varchar(11) NOT NULL FOREIGN KEY REFERENCES Supplier(S_Phone),
+	C_S_Phone Varchar(11) NOT NULL FOREIGN KEY REFERENCES Supplier(S_Phone),
 	Chalan_ID int NOT NULL FOREIGN KEY REFERENCES Chalan(Chalan_ID),
-	P_ID int  NOT NULL FOREIGN KEY REFERENCES Stock(P_ID),
+	C_P_ID int  NOT NULL FOREIGN KEY REFERENCES Stock(P_ID),
 	Buying_UnitPrice money not null,
 	Selling_UnitPrice money not null,
 	Remaining_Quantity int not null
@@ -53,42 +53,11 @@ Create Table Customer(
 
 Create Table Buy(
 	Billing_ID int identity(300,1) Primary Key not null,
-	P_ID int NOT NULL FOREIGN KEY REFERENCES Stock(P_ID),
+	B_P_ID int NOT NULL FOREIGN KEY REFERENCES Stock(P_ID),
 	Buying_Date Date not null,
 	C_ID int NOT NULL FOREIGN KEY REFERENCES Customer(C_ID),
 	Buy_Quantity int not null,
 	Total_Price int not null
 
 )
-
-
-INSERT INTO Users VALUES ('admin','admin','admin')
-
-INSERT INTO Supplier VALUES ('01725697841','Coca-Cola','Tejgong')
-
-Insert into Stock values ('Pepsi 250ml',50,NULL,NULL)
-Insert into Stock values ('Coca-Cola 250ml',50,NULL,NULL)
-
-
-select * from Stock
-
-SELECT S_Quantity from Stock where P_ID = 1
-
-Alter table Chalan
-Alter column Exp_Date Date
-
-
-SELECT IDENT_CURRENT('Chalan')
-
-
-Select * from Stock inner join S_Chalan_P
-on Stock.P_ID = S_Chalan_P.P_ID
-inner join Chalan
-on S_Chalan_P.Chalan_ID = Chalan.Chalan_ID
-inner join Supplier
-on S_Chalan_P.S_Phone = Supplier.S_Phone
-where exp_date BETWEEN '2022-08-21' AND '2023-08-30'
-
-
-
 

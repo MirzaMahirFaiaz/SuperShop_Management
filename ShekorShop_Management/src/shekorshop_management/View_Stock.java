@@ -32,7 +32,7 @@ public class View_Stock extends javax.swing.JFrame {
         connectDB();
 
         today = LocalDate.now().toString();
-        
+
     }
 
     public Connection connection;
@@ -48,6 +48,8 @@ public class View_Stock extends javax.swing.JFrame {
         }
     }
 
+    String query;
+
     public void viewDataOnTable(ResultSet rs) {
 
         try {
@@ -59,7 +61,7 @@ public class View_Stock extends javax.swing.JFrame {
 
                 String pn = rs.getString("P_Name");
                 String rq = rs.getString("Remaining_Quantity");
-                String category = rs.getString("Category");
+                String cid = rs.getString("Chalan_ID");
                 String b_unitprice = rs.getString("Buying_UnitPrice");
                 String s_unitPrice = rs.getString("Selling_UnitPrice");
                 String phone = rs.getString("S_Phone");
@@ -70,7 +72,7 @@ public class View_Stock extends javax.swing.JFrame {
 
                 row[0] = pn;
                 row[1] = rq;
-                row[2] = category;
+                row[2] = cid;
                 row[3] = b_unitprice;
                 row[4] = s_unitPrice;
                 row[5] = phone;
@@ -86,8 +88,6 @@ public class View_Stock extends javax.swing.JFrame {
         }
 
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -98,12 +98,12 @@ public class View_Stock extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBoxSelectSearch = new javax.swing.JComboBox<>();
         jTextFieldSearch = new javax.swing.JTextField();
-        jButtonSearchSupplier = new javax.swing.JButton();
+        jButtonSearch = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableStock = new javax.swing.JTable();
-        jButtonSearchSupplier1 = new javax.swing.JButton();
+        jButtonDelete = new javax.swing.JButton();
         jButtonBack = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -111,7 +111,7 @@ public class View_Stock extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jComboBoxSelectExp.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
-        jComboBoxSelectExp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Items", "At least 30 Days Remaining", "At least 10 Days Remaining", "Expired" }));
+        jComboBoxSelectExp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "All Items", "At least 30 Days Remaining", "At least 10 Days Remaining", "Expired" }));
         jComboBoxSelectExp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSelectExpActionPerformed(evt);
@@ -123,7 +123,7 @@ public class View_Stock extends javax.swing.JFrame {
         jLabel3.setText("Remaining Validity Date:");
 
         jComboBoxSelectSearch.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
-        jComboBoxSelectSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product Name", "Product ID", "Supplier Name", "Supplier Phone" }));
+        jComboBoxSelectSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Product Name", "Product ID", "Supplier Name", "Supplier Phone" }));
         jComboBoxSelectSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSelectSearchActionPerformed(evt);
@@ -137,13 +137,13 @@ public class View_Stock extends javax.swing.JFrame {
             }
         });
 
-        jButtonSearchSupplier.setBackground(new java.awt.Color(0, 44, 62));
-        jButtonSearchSupplier.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
-        jButtonSearchSupplier.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSearchSupplier.setText("Search");
-        jButtonSearchSupplier.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSearch.setBackground(new java.awt.Color(0, 44, 62));
+        jButtonSearch.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jButtonSearch.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSearchSupplierActionPerformed(evt);
+                jButtonSearchActionPerformed(evt);
             }
         });
 
@@ -160,7 +160,7 @@ public class View_Stock extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Prod. Name", "Rem. Qnt.", "Category", "Buy. UnitPrc.", "Sell. UnitPrc.", "Sup. Phone", "Sup. Name", "Exp. Date"
+                "Prod. Name", "Rem. Qnt.", "Chalan_ID", "Buy. UnitPrc.", "Sell. UnitPrc.", "Sup. Phone", "Sup. Name", "Exp. Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -171,15 +171,20 @@ public class View_Stock extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTableStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableStockMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableStock);
 
-        jButtonSearchSupplier1.setBackground(new java.awt.Color(0, 44, 62));
-        jButtonSearchSupplier1.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
-        jButtonSearchSupplier1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSearchSupplier1.setText("DELETE");
-        jButtonSearchSupplier1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDelete.setBackground(new java.awt.Color(0, 44, 62));
+        jButtonDelete.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jButtonDelete.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonDelete.setText("DELETE");
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSearchSupplier1ActionPerformed(evt);
+                jButtonDeleteActionPerformed(evt);
             }
         });
 
@@ -204,15 +209,15 @@ public class View_Stock extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSearchSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel6))
-                            .addComponent(jButtonSearchSupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jComboBoxSelectSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSelectExp, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBoxSelectExp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 898, Short.MAX_VALUE)
                 .addContainerGap())
@@ -236,9 +241,9 @@ public class View_Stock extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboBoxSelectExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
-                        .addComponent(jButtonSearchSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonSearchSupplier1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -304,116 +309,167 @@ public class View_Stock extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldSearchActionPerformed
 
-    private void jButtonSearchSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchSupplierActionPerformed
+    public String increase_date(int day) {
+
+        String dt = today; // Start date
+
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Calendar c = Calendar.getInstance();
+            c.setTime(sdf.parse(dt));
+            c.add(Calendar.DATE, day);  // number of days to add
+            dt = sdf.format(c.getTime());  // dt is now the new date
+
+        } catch (ParseException ex) {
+            Logger.getLogger(View_Stock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dt;
+    }
+
+    public void query_string(String ex) {
+
+        query = "Select * from Stock inner join S_Chalan_P on Stock.P_ID = S_Chalan_P.C_P_ID "
+                + "inner join Chalan on S_Chalan_P.Chalan_ID = Chalan.Chalan_ID "
+                + "inner join Supplier on S_Chalan_P.C_S_Phone = Supplier.S_Phone "
+                + ex;
+
+        //System.out.println(query);
+    }
+
+    void validity(String selector) {
+
+        if (indexExp == 0 || indexExp == 1) {
+            query_string(selector);
+
+        } else if (indexExp == 2) {
+
+            String dt = increase_date(31);
+
+            query_string(selector + " AND Exp_Date < '" + dt + "'");
+
+        } else if (indexExp == 3) {
+
+            String dt = increase_date(11);
+
+            query_string(selector + " AND Exp_Date < '" + dt + "'");
+
+        } else if (indexExp == 4) {
+
+            query_string(selector + " AND Exp_Date < '" + today + "'");
+        }
+
+        //System.out.println(query);
+    }
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+
+        try {
+
+            if (index == 0) {
+
+                validity("Where P_Name Like '%" + jTextFieldSearch.getText() + "%'");
+                
+
+            } else if (index == 1) {
+
+                validity("Where P_Name Like '%" + jTextFieldSearch.getText() + "%'");
+                //System.out.println(query);
+            } else if (index == 2) {
+
+                validity("Where C_P_ID = " + jTextFieldSearch.getText());
+
+            } else if (index == 3) {
+
+                validity("Where S_Name Like '%" + jTextFieldSearch.getText() + "%'");
+                //System.out.println(query);
+            } else if (index == 4) {
+
+                validity("Where C_S_Phone Like '%" + jTextFieldSearch.getText() + "%'");
+
+            }
+            PreparedStatement ps;
+            ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            viewDataOnTable(rs);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(View_Stock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jComboBoxSelectSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelectSearchActionPerformed
+
+        index = jComboBoxSelectSearch.getSelectedIndex();
+
+    }//GEN-LAST:event_jComboBoxSelectSearchActionPerformed
+
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
 
         String query;
 
         try {
 
-            if (indexExp == 0) {
+            query = "Delete from S_Chalan_P where Chalan_ID = " + chalanID;
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.executeUpdate();
 
-                query = "Select * from Stock inner join S_Chalan_P on Stock.P_ID = S_Chalan_P.P_ID "
-                        + "inner join Chalan on S_Chalan_P.Chalan_ID = Chalan.Chalan_ID "
-                        + "inner join Supplier on S_Chalan_P.S_Phone = Supplier.S_Phone "
-                        + " Where P_Name Like '%" + jTextFieldSearch.getText() + "%'";
+            query = "Delete from Chalan where Chalan_ID = " + chalanID;   //System.out.println(query);
+            ps = connection.prepareStatement(query);
+            ps.executeUpdate();
 
-                PreparedStatement ps;
+            query = "Select * from Stock Where P_Name = '" + PName + "'";
+
+            ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                int updated_quantity = rs.getInt("S_Quantity");
+                int pid = rs.getInt("P_ID");
+
+                updated_quantity = updated_quantity - Integer.parseInt(remQ);
+
+                query = "Update Stock Set S_Quantity = " + updated_quantity + " Where P_ID = " + pid;
                 ps = connection.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-
-                viewDataOnTable(rs);
-
-            } 
-            
-            if (indexExp == 1) {
-
-            
-                String dt = today;  // Start date
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Calendar c = Calendar.getInstance();
-                c.setTime(sdf.parse(dt));
-                c.add(Calendar.DATE, 31);  // number of days to add
-                dt = sdf.format(c.getTime());  // dt is now the new date
-                
-                
-                
-                query = "Select * from Stock inner join S_Chalan_P on Stock.P_ID = S_Chalan_P.P_ID "
-                        + "inner join Chalan on S_Chalan_P.Chalan_ID = Chalan.Chalan_ID "
-                        + "inner join Supplier on S_Chalan_P.S_Phone = Supplier.S_Phone "
-                        + " Where Exp_Date < '"+dt+"'";
-                
-                
-                PreparedStatement ps;
-                ps = connection.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-
-                viewDataOnTable(rs);
-            
+                ps.executeUpdate();
 
             }
-            
-             else if (indexExp == 2) {
+            JOptionPane.showMessageDialog(null, "Delete Successful...", "Info", JOptionPane.INFORMATION_MESSAGE);
 
-                String dt = today;  // Start date
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Calendar c = Calendar.getInstance();
-                c.setTime(sdf.parse(dt));
-                c.add(Calendar.DATE, 11);  // number of days to add
-                dt = sdf.format(c.getTime());  // dt is now the new date
-                
-                
-                
-                query = "Select * from Stock inner join S_Chalan_P on Stock.P_ID = S_Chalan_P.P_ID "
-                        + "inner join Chalan on S_Chalan_P.Chalan_ID = Chalan.Chalan_ID "
-                        + "inner join Supplier on S_Chalan_P.S_Phone = Supplier.S_Phone "
-                        + " Where Exp_Date < '"+dt+"'";
-                        
-                
-                PreparedStatement ps;
-                ps = connection.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-
-                viewDataOnTable(rs);
-
-            }
-             else if(indexExp == 3){
-                 
-                query = "Select * from Stock inner join S_Chalan_P on Stock.P_ID = S_Chalan_P.P_ID "
-                        + "inner join Chalan on S_Chalan_P.Chalan_ID = Chalan.Chalan_ID "
-                        + "inner join Supplier on S_Chalan_P.S_Phone = Supplier.S_Phone "
-                        + " Where Exp_Date < '"+today+"'";
-                        
-                
-                PreparedStatement ps;
-                ps = connection.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-
-                viewDataOnTable(rs);
-                 
-             }
-
-        } catch (SQLException | ParseException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(View_Stock.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Delete Failed...", "Error", JOptionPane.INFORMATION_MESSAGE);
         }
 
+        chalanID = "";
+        remQ = "";
+        PName = "";
 
-    }//GEN-LAST:event_jButtonSearchSupplierActionPerformed
 
-    private void jComboBoxSelectSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSelectSearchActionPerformed
-        
-        index = jComboBoxSelectSearch.getSelectedIndex();
-        
-    }//GEN-LAST:event_jComboBoxSelectSearchActionPerformed
-
-    private void jButtonSearchSupplier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchSupplier1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSearchSupplier1ActionPerformed
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         dispose();
         Admin_Home ah = new Admin_Home();
         ah.setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    String chalanID;
+    String remQ;
+    String PName;
+
+    private void jTableStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableStockMouseClicked
+
+        DefaultTableModel model = (DefaultTableModel) jTableStock.getModel();
+
+        PName = (String) model.getValueAt(jTableStock.getSelectedRow(), 0);
+        remQ = (String) model.getValueAt(jTableStock.getSelectedRow(), 1);
+        chalanID = (String) model.getValueAt(jTableStock.getSelectedRow(), 2);
+
+    }//GEN-LAST:event_jTableStockMouseClicked
 
     /**
      * @param args the command line arguments
@@ -452,8 +508,8 @@ public class View_Stock extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBack;
-    private javax.swing.JButton jButtonSearchSupplier;
-    private javax.swing.JButton jButtonSearchSupplier1;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JComboBox<String> jComboBoxSelectExp;
     private javax.swing.JComboBox<String> jComboBoxSelectSearch;
     private javax.swing.JLabel jLabel1;

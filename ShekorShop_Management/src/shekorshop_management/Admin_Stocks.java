@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -32,22 +31,22 @@ public class Admin_Stocks extends javax.swing.JFrame {
     public Admin_Stocks() {
         initComponents();
         connectDB();
-        
+
         String chalan_date = LocalDate.now().toString();
         //System.out.println(chalan_date);
-                
+
         try {
-            java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse( chalan_date );
+            java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(chalan_date);
             jDateChooserChalanDate.setDate(date);
-            
+
         } catch (ParseException ex) {
             Logger.getLogger(Admin_Stocks.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public Connection connection;
-    
+
     public void connectDB() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -58,9 +57,7 @@ public class Admin_Stocks extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -433,106 +430,103 @@ public class Admin_Stocks extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddChalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddChalanActionPerformed
-        
+
         String pn = jTextFieldPName.getText();
-        String pid =  jTextFieldPID.getText();
+        String pid = jTextFieldPID.getText();
         String p_details = textFieldPDetails.getText();
         String s_phone = jTextFieldPhone.getText();
         String quantity = jTextFieldP_Quantity.getText();
         String category = (String) jComboBoxCategory.getSelectedItem();
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String exp_date =  sdf.format(jDateChooserExpDate.getDate());
-        String chalan_date =  sdf.format(jDateChooserChalanDate.getDate());
-        
-        
+        String exp_date = sdf.format(jDateChooserExpDate.getDate());
+        String chalan_date = sdf.format(jDateChooserChalanDate.getDate());
+
         String b_price = jTextFieldBuying_UnitPrice.getText();
         String s_price = jTextFieldSelling_UnitPrice.getText();
-        
- 
+
+        int flag = 0;
+
         try {
-        
+
             String query;
-            
-            query = "INSERT INTO Chalan VALUES ('"+chalan_date+"','"+quantity+"','"+exp_date+"')";
-            
+
+            query = "INSERT INTO Chalan VALUES ('" + chalan_date + "','" + quantity + "','" + exp_date + "')";
+
             //System.out.println(query);
-            
             PreparedStatement ps;
             ps = connection.prepareStatement(query);
             ps.executeUpdate();
-            
-            if(pid.equals("")){
+
+            if (pid.equals("")) {
                 pid = "0";
             }
-            
-            query = "SELECT S_Quantity from Stock where P_ID = "+Integer.parseInt(pid);
-            
+
+            query = "SELECT S_Quantity from Stock where P_ID = " + Integer.parseInt(pid);
+
             ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            
-            if(rs.next()){
-            
-            int updated_quantity = rs.getInt("S_Quantity");
-            updated_quantity = updated_quantity + Integer.parseInt(quantity) ;
-            
-            
-            query = "Update Stock Set S_Quantity = "+updated_quantity+" Where P_ID = "+pid;
-            ps = connection.prepareStatement(query);
-            ps.executeUpdate();
-            
-            
-            
+
+            if (rs.next()) {
+
+                int updated_quantity = rs.getInt("S_Quantity");
+                updated_quantity = updated_quantity + Integer.parseInt(quantity);
+
+                query = "Update Stock Set S_Quantity = " + updated_quantity + " Where P_ID = " + Integer.parseInt(pid);
+                ps = connection.prepareStatement(query);
+                ps.executeUpdate();
+
+            } else {
+
+                query = "Insert into Stock values ('" + pn + "'," + quantity + ",'" + p_details + "','" + category + "')";
+
+                //System.out.println(query);
+                ps = connection.prepareStatement(query);
+                ps.executeUpdate();
+
+                flag = 1;
+
             }
-            
-            else{
-                
-            query = "Insert into Stock values ('"+pn+"',"+quantity+",'"+p_details+"','"+category+"')";
-            
-            //System.out.println(query);
-            
-            ps = connection.prepareStatement(query);
-            ps.executeUpdate();
-                
-            }
-            
-            
-            query = "SELECT IDENT_CURRENT('Chalan')" ;
-            
+
+            query = "SELECT IDENT_CURRENT('Chalan')";
+
             ps = connection.prepareStatement(query);
             rs = ps.executeQuery();
-            
+
             rs.next();
-            
+
             int chalan_id = rs.getInt("");
             //System.out.println(chalan_id);
             
-            query = "SELECT IDENT_CURRENT('Stock')" ;
-            
-            ps = connection.prepareStatement(query);
-            rs = ps.executeQuery();
-            
-            rs.next();
-            
-            int updated_pid = rs.getInt("");
-            
-                        
-            query = "INSERT INTO S_Chalan_P VALUES ('"+s_phone+"',"+chalan_id+","+updated_pid+","+b_price+","+s_price+","+quantity+")";
+            int updated_pid = Integer.parseInt(pid);
+
+            if (flag == 1) {
+
+                query = "SELECT IDENT_CURRENT('Stock')";
+
+                ps = connection.prepareStatement(query);
+                rs = ps.executeQuery();
+
+                rs.next();
+
+                updated_pid = rs.getInt("");
+            }
+
+            query = "INSERT INTO S_Chalan_P VALUES ('" + s_phone + "'," + chalan_id + "," + updated_pid + "," + b_price + "," + s_price + "," + quantity + ")";
             //System.out.println(query);
-            
+
             ps = connection.prepareStatement(query);
             ps.executeUpdate();
-            
-            
+
             JOptionPane.showMessageDialog(null, "Product added to Stock Successfully...", "Info", JOptionPane.INFORMATION_MESSAGE);
-            
+
+            clear();
 
         } catch (SQLException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jButtonAddChalanActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -543,10 +537,10 @@ public class Admin_Stocks extends javax.swing.JFrame {
     }//GEN-LAST:event_BackActionPerformed
 
     private void jButtonSearchSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchSupplierActionPerformed
-        
+
         try {
             //String query = "SELECT * FROM Users WHERE USERNAME='" + jTextFieldSearchQuery.getText() + "' order by USERNAME";
-            String query = "SELECT * FROM Supplier WHERE S_Phone LIKE '%"+jTextFieldSupplierPhone.getText()+"%'";
+            String query = "SELECT * FROM Supplier WHERE S_Phone LIKE '%" + jTextFieldSupplierPhone.getText() + "%'";
             PreparedStatement ps;
 
             ps = connection.prepareStatement(query);
@@ -554,21 +548,19 @@ public class Admin_Stocks extends javax.swing.JFrame {
 
             DefaultTableModel model = (DefaultTableModel) jTableSupplier.getModel();
             model.setRowCount(0);
-            
+
             while (rs.next()) {
-                
+
                 String sn = rs.getString("S_Name");
                 String sp = rs.getString("S_Phone");
-             
-                   
+
                 Object[] row = new Object[2];
-                
+
                 row[0] = sn;
                 row[1] = sp;
-                
-                
+
                 model.addRow(row);
-                
+
             }
 
             if (jTableSupplier.getRowCount() == 0) {
@@ -578,14 +570,14 @@ public class Admin_Stocks extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jButtonSearchSupplierActionPerformed
 
     private void jButtonSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchProductActionPerformed
-        
+
         try {
             //String query = "SELECT * FROM Users WHERE USERNAME='" + jTextFieldSearchQuery.getText() + "' order by USERNAME";
-            String query = "SELECT * FROM Stock WHERE P_Name LIKE '%"+jTextFieldProductName.getText()+"%'";
+            String query = "SELECT * FROM Stock WHERE P_Name LIKE '%" + jTextFieldProductName.getText() + "%'";
             PreparedStatement ps;
 
             ps = connection.prepareStatement(query);
@@ -593,21 +585,19 @@ public class Admin_Stocks extends javax.swing.JFrame {
 
             DefaultTableModel model = (DefaultTableModel) jTableProduct.getModel();
             model.setRowCount(0);
-            
+
             while (rs.next()) {
-                
+
                 String pn = rs.getString("P_Name");
                 String pid = rs.getString("P_ID");
-             
-                   
+
                 Object[] row = new Object[2];
-                
+
                 row[0] = pn;
                 row[1] = pid;
-                
-                
+
                 model.addRow(row);
-                
+
             }
 
             if (jTableProduct.getRowCount() == 0) {
@@ -617,7 +607,7 @@ public class Admin_Stocks extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jButtonSearchProductActionPerformed
 
     private void jTextFieldProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProductNameActionPerformed
@@ -625,52 +615,52 @@ public class Admin_Stocks extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldProductNameActionPerformed
 
     private void jTableSupplierMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSupplierMouseClicked
-        
-            DefaultTableModel model = (DefaultTableModel) jTableSupplier.getModel();
 
-            String sn = (String) model.getValueAt(jTableSupplier.getSelectedRow(), 0);
-            String s_phone = (String) model.getValueAt(jTableSupplier.getSelectedRow(), 1);
+        DefaultTableModel model = (DefaultTableModel) jTableSupplier.getModel();
 
-            //jTextFieldSupplierName.setText(sn);
-            jTextFieldPhone.setText(s_phone);
-        
+        String sn = (String) model.getValueAt(jTableSupplier.getSelectedRow(), 0);
+        String s_phone = (String) model.getValueAt(jTableSupplier.getSelectedRow(), 1);
+
+        //jTextFieldSupplierName.setText(sn);
+        jTextFieldPhone.setText(s_phone);
+
     }//GEN-LAST:event_jTableSupplierMouseClicked
 
     private void jTableProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProductMouseClicked
-        
-            DefaultTableModel model = (DefaultTableModel) jTableProduct.getModel();
 
-            String pn = (String) model.getValueAt(jTableProduct.getSelectedRow(), 0);
-            String pid = (String) model.getValueAt(jTableProduct.getSelectedRow(), 1);
+        DefaultTableModel model = (DefaultTableModel) jTableProduct.getModel();
 
-            //jTextFieldSupplierName.setText(sn);
-            jTextFieldPName.setText(pn);
-            jTextFieldPID.setText(pid);
-            
+        String pn = (String) model.getValueAt(jTableProduct.getSelectedRow(), 0);
+        String pid = (String) model.getValueAt(jTableProduct.getSelectedRow(), 1);
+
+        //jTextFieldSupplierName.setText(sn);
+        jTextFieldPName.setText(pn);
+        jTextFieldPID.setText(pid);
+
     }//GEN-LAST:event_jTableProductMouseClicked
-    
-    void clear(){
-        
+
+    void clear() {
+
         jTextFieldPName.setText("");
         jTextFieldPID.setText("");
         textFieldPDetails.setText(" ");
         jTextFieldPhone.setText("");
         jTextFieldP_Quantity.setText("");
         jComboBoxCategory.setSelectedIndex(0);
-        
+
         jDateChooserExpDate.setCalendar(null);
-        jDateChooserChalanDate.setCalendar(null);
-        
+        //jDateChooserChalanDate.setCalendar(null);
+
         jTextFieldBuying_UnitPrice.setText("");
         jTextFieldSelling_UnitPrice.setText("");
-        
+
     }
-    
-    
+
+
     private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
-        
+
         clear();
-        
+
     }//GEN-LAST:event_jButtonClearActionPerformed
 
     /**

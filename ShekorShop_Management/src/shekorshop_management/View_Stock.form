@@ -51,18 +51,18 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButtonSearchSupplier" min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="jButtonSearch" min="-2" pref="102" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jButtonSearchSupplier1" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="jButtonDelete" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
                               <Component id="jButtonBack" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jComboBoxSelectSearch" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="jComboBoxSelectExp" min="-2" pref="200" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboBoxSelectExp" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="898" max="32767" attributes="0"/>
@@ -91,9 +91,9 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jComboBoxSelectExp" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                          <Component id="jButtonSearchSupplier" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jButtonSearch" min="-2" pref="39" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButtonSearchSupplier1" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jButtonDelete" min="-2" pref="39" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButtonBack" min="-2" pref="39" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -123,11 +123,12 @@
               <Font name="Segoe UI Emoji" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="All Items"/>
-                <StringItem index="1" value="At least 30 Days Remaining"/>
-                <StringItem index="2" value="At least 10 Days Remaining"/>
-                <StringItem index="3" value="Expired"/>
+              <StringArray count="5">
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="All Items"/>
+                <StringItem index="2" value="At least 30 Days Remaining"/>
+                <StringItem index="3" value="At least 10 Days Remaining"/>
+                <StringItem index="4" value="Expired"/>
               </StringArray>
             </Property>
           </Properties>
@@ -153,11 +154,12 @@
               <Font name="Segoe UI Emoji" size="18" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Product Name"/>
-                <StringItem index="1" value="Product ID"/>
-                <StringItem index="2" value="Supplier Name"/>
-                <StringItem index="3" value="Supplier Phone"/>
+              <StringArray count="5">
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Product Name"/>
+                <StringItem index="2" value="Product ID"/>
+                <StringItem index="3" value="Supplier Name"/>
+                <StringItem index="4" value="Supplier Phone"/>
               </StringArray>
             </Property>
           </Properties>
@@ -178,7 +180,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSearchActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButtonSearchSupplier">
+        <Component class="javax.swing.JButton" name="jButtonSearch">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="3e" green="2c" red="0" type="rgb"/>
@@ -192,7 +194,7 @@
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSearchSupplierActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSearchActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -228,7 +230,7 @@
                   <Table columnCount="8" rowCount="0">
                     <Column editable="false" title="Prod. Name" type="java.lang.Object"/>
                     <Column editable="false" title="Rem. Qnt." type="java.lang.Object"/>
-                    <Column editable="false" title="Category" type="java.lang.Object"/>
+                    <Column editable="false" title="Chalan_ID" type="java.lang.Object"/>
                     <Column editable="false" title="Buy. UnitPrc." type="java.lang.Object"/>
                     <Column editable="false" title="Sell. UnitPrc." type="java.lang.Object"/>
                     <Column editable="false" title="Sup. Phone" type="java.lang.Object"/>
@@ -284,10 +286,13 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableStockMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButtonSearchSupplier1">
+        <Component class="javax.swing.JButton" name="jButtonDelete">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="3e" green="2c" red="0" type="rgb"/>
@@ -301,7 +306,7 @@
             <Property name="text" type="java.lang.String" value="DELETE"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSearchSupplier1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonBack">

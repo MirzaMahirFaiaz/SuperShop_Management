@@ -61,13 +61,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                   <Component id="jButtonAddStock" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jButtonEditUsers" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                  <Component id="jButtonEditSupplier" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jButtonViewStock" min="-2" pref="39" max="-2" attributes="0"/>
-                  <EmptySpace pref="231" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="jButtonEditSupplier" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="jButtonEditUsers" min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace pref="232" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
