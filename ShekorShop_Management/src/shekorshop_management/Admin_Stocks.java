@@ -537,7 +537,7 @@ public class Admin_Stocks extends javax.swing.JFrame {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-         dispose();
+        dispose();
         Admin_Home ah = new Admin_Home();
         ah.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed

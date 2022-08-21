@@ -203,7 +203,9 @@ public class Admin_Home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEditUsersActionPerformed
 
     private void jButtonViewStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewStockActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        View_Stock vs = new View_Stock();
+        vs.setVisible(true);
     }//GEN-LAST:event_jButtonViewStockActionPerformed
 
     /**
