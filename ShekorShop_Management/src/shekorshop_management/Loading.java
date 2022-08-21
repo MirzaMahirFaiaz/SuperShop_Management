@@ -54,7 +54,7 @@ pbThead t1;
             prog.setMaximum(max);
             prog.setValue(0);
             
-            for(int i=min;i<=max;i++){
+            for(int i=min;i<=max;i+=4){
                 prog.setValue(i);
                 
                 try{
