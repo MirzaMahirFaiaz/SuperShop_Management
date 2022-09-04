@@ -526,6 +526,9 @@ public class SellingProducts extends javax.swing.JFrame {
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
         // TODO add your handling code here:
+        dispose();
+        Login lg = new Login();
+        lg.setVisible(true);
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
@@ -645,11 +648,11 @@ public class SellingProducts extends javax.swing.JFrame {
                 String pid = (String) model.getValueAt(jTableProduct.getSelectedRow(), 1);
                 String pn = (String) model.getValueAt(jTableProduct.getSelectedRow(), 0);
 
-                String query = "Select * from S_Chalan_P\n"
-                        + "inner join Stock on\n"
-                        + "S_Chalan_P.C_P_ID = Stock.P_ID\n"
-                        + "inner join Chalan on \n"
-                        + "S_Chalan_P.Chalan_ID = Chalan.Chalan_ID\n"
+                String query = "Select * from S_Chalan_P"
+                        + "inner join Stock on"
+                        + "S_Chalan_P.C_P_ID = Stock.P_ID"
+                        + "inner join Chalan on "
+                        + "S_Chalan_P.Chalan_ID = Chalan.Chalan_ID"
                         + "where (Stock.P_ID = " + pid +" AND Exp_Date > '"+present_date+"' ) Order by Exp_Date";
                 
                 System.out.println(query);

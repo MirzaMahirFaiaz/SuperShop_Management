@@ -233,7 +233,10 @@ public class Login extends javax.swing.JFrame {
                     ah.setVisible(true);
                 }
                 else{
-                    //seller j frame set visible
+                   
+                    dispose();
+                    SellingProducts sp = new SellingProducts();
+                    sp.setVisible(true);
                 }
                 
             } 
