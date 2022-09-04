@@ -49,4 +49,8 @@ select * from S_Chalan_P
 
 select * from Stock
 
+select * from Bill
+
+select * from Decrease
+
 
