@@ -6,6 +6,8 @@
 package shekorshop_management;
 
 import java.awt.Point;
+import static java.lang.Math.ceil;
+import static java.lang.Math.floor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -527,9 +529,110 @@ public class SellingProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonSaveActionPerformed
+        
+        try {
+        
+        int rem_quantity=0,pid=0,stock_quantity=0,customer_id =0,billing_id;
+            
+        DefaultTableModel model = (DefaultTableModel) jTableBill.getModel();
+        String query;
+        
+        
+        query = "Select * from Customer where C_Phone = '"+jTextFieldCustomerPhone.getText()+"'";
+                
+                PreparedStatement ps = connection.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+                
+                while(rs.next()){
+                    customer_id = rs.getInt("C_ID");
+                }
+        
+        query = "Insert INTO Decrease Values ( '"+present_date+"', "+customer_id +", "+jLabelTotal.getText()+" )";
+                
+                ps = connection.prepareStatement(query);
+                ps.executeUpdate();
+                
+                query = "SELECT IDENT_CURRENT('Decrease')";
 
+                ps = connection.prepareStatement(query);
+                rs = ps.executeQuery();
+
+                rs.next();
+
+                billing_id = rs.getInt("");
+        
+        int count = jTableBill.getRowCount();
+                
+        for(int i=0;i<count;i++){
+                
+            
+                String pn = (String) model.getValueAt(i, 0);
+                double unit_price = Double.parseDouble( (String) model.getValueAt(i, 1) ) ;
+                int purchase_quantity = Integer.parseInt( (String) model.getValueAt(i, 2) ) ;
+                double price = Double.parseDouble( (String) model.getValueAt(i, 3) ) ;
+            
+                int cid = chalan_id[i];
+                
+                query = "Select * from S_Chalan_P where Chalan_ID = "+cid;
+                
+                
+                ps = connection.prepareStatement(query);
+                rs = ps.executeQuery();
+                
+                while(rs.next()){
+                    rem_quantity = rs.getInt("Remaining_Quantity");
+                }
+                
+                query = "Select * from Stock where P_Name = '"+pn+"'";
+                
+                
+                ps = connection.prepareStatement(query);
+                rs = ps.executeQuery();
+                
+                while(rs.next()){
+                    pid = rs.getInt("P_ID");
+                    stock_quantity = rs.getInt("S_Quantity");
+                }
+                
+                
+                rem_quantity = rem_quantity - purchase_quantity;
+                stock_quantity = stock_quantity - purchase_quantity;
+                
+                query = "Update S_chalan_P Set Remaining_Quantity = "+rem_quantity+" where Chalan_ID = "+cid;
+                
+                ps = connection.prepareStatement(query);
+                ps.executeUpdate();
+                
+                query = "Update Stock Set S_Quantity = "+stock_quantity+" where P_ID = "+pid;
+                
+                ps = connection.prepareStatement(query);
+                ps.executeUpdate();
+                
+                
+                
+                query = "Insert INTO Bill Values ( "+billing_id+", "+pid +", "+purchase_quantity+", "+price+" )";
+                
+                ps = connection.prepareStatement(query);
+                ps.executeUpdate();
+                
+                
+                
+        }
+        index_of_array=0;
+        JOptionPane.showMessageDialog(null, "Bill Generated Successfully...", "Info...", JOptionPane.INFORMATION_MESSAGE);
+            
+            } catch (SQLException ex) {
+                Logger.getLogger(SellingProducts.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Something Went Wrong...", "Error...", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        
+        
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+    
+    int chalan_id[] = new int[1000];
+    int index_of_array=0;
+    
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
 
         try {
@@ -559,7 +662,8 @@ public class SellingProducts extends javax.swing.JFrame {
                 rs.next();
                 
                 double unit_price = Double.parseDouble( rs.getString("Selling_UnitPrice") );
-                int chalan_id = rs.getInt("Chalan_ID");
+                chalan_id[index_of_array] = rs.getInt("Chalan_ID");
+                index_of_array++;
                 
                 model = (DefaultTableModel) jTableBill.getModel(); 
                 
@@ -639,6 +743,10 @@ public class SellingProducts extends javax.swing.JFrame {
         jLabelVat.setText(print);
         
         final_total = final_total + vat;
+        
+        double discount = Double.parseDouble( jTextFieldDiscount.getText() );
+        
+        final_total = floor(final_total - discount);
         
         print = String.valueOf(final_total);
         

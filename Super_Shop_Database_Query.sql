@@ -55,7 +55,7 @@ Create Table Decrease(
 	Billing_ID int identity(300,1) Primary Key not null,
 	Buying_Date Date not null,
 	C_ID int NOT NULL FOREIGN KEY REFERENCES Customer(C_ID),
-	Total_Price int not null
+	Total_Price money not null
 
 )
 

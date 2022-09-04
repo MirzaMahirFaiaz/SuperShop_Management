@@ -45,3 +45,8 @@ inner join Chalan on
 S_Chalan_P.Chalan_ID = Chalan.Chalan_ID
 where (Stock.P_ID = 9 AND Exp_Date > '2022-09-04' ) Order by Exp_Date
 
+select * from S_Chalan_P
+
+select * from Stock
+
+
