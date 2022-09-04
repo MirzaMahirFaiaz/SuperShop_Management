@@ -44,7 +44,7 @@ Create Table S_Chalan_P(
 
 
 Create Table Customer(
-	C_ID int primary key identity(1,1)not null,
+	C_ID int primary key identity(1,1),
 	C_Phone Varchar(11) UNIQUE NOT NULL,
 	C_Name varchar(50) not null,
 	C_Address varchar(100) not null

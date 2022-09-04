@@ -29,3 +29,19 @@ on S_Chalan_P.C_S_Phone = Supplier.S_Phone
 
 where exp_date BETWEEN '2022-08-21' AND '2023-08-30'
 
+select * from Customer
+
+Select Selling_UnitPrice,Exp_Date from S_Chalan_P
+inner join Stock on
+S_Chalan_P.C_P_ID = Stock.P_ID
+inner join Chalan on 
+S_Chalan_P.Chalan_ID = Chalan.Chalan_ID
+where (Stock.P_ID = 9 AND Exp_Date>'2022-09-04') Order by Exp_Date
+
+Select * from S_Chalan_P
+inner join Stock on
+S_Chalan_P.C_P_ID = Stock.P_ID
+inner join Chalan on 
+S_Chalan_P.Chalan_ID = Chalan.Chalan_ID
+where (Stock.P_ID = 9 AND Exp_Date > '2022-09-04' ) Order by Exp_Date
+
