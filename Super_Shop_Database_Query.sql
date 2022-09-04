@@ -51,13 +51,19 @@ Create Table Customer(
 )
 
 
-Create Table Buy(
+Create Table Decrease(
 	Billing_ID int identity(300,1) Primary Key not null,
-	B_P_ID int NOT NULL FOREIGN KEY REFERENCES Stock(P_ID),
 	Buying_Date Date not null,
 	C_ID int NOT NULL FOREIGN KEY REFERENCES Customer(C_ID),
-	Buy_Quantity int not null,
 	Total_Price int not null
+
+)
+
+Create Table Bill(
+	Billing_ID int NOT NULL FOREIGN KEY REFERENCES Decrease(Billing_ID),
+	B_P_ID int NOT NULL FOREIGN KEY REFERENCES Stock(P_ID),
+	Buy_Quantity int not null default '1',
+	Quantity_Price money not null
 
 )
 

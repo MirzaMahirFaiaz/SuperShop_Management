@@ -5,6 +5,7 @@
  */
 package shekorshop_management;
 
+import java.awt.Point;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -204,7 +205,6 @@ public class SellingProducts extends javax.swing.JFrame {
 
         jLabelTotal.setBackground(new java.awt.Color(0, 44, 62));
         jLabelTotal.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabelTotal.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -213,7 +213,6 @@ public class SellingProducts extends javax.swing.JFrame {
 
         jLabelVat.setBackground(new java.awt.Color(0, 44, 62));
         jLabelVat.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabelVat.setForeground(new java.awt.Color(255, 255, 255));
         jLabelVat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -221,6 +220,7 @@ public class SellingProducts extends javax.swing.JFrame {
         jLabel9.setText("Discount =");
 
         jTextFieldDiscount.setFont(new java.awt.Font("Segoe UI Emoji", 0, 18)); // NOI18N
+        jTextFieldDiscount.setText("0");
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -588,7 +588,17 @@ public class SellingProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        // TODO add your handling code here:
+        
+        if (jTableProduct.getSelectedRowCount() != 0) {
+            
+            DefaultTableModel model = (DefaultTableModel) jTableBill.getModel();
+            
+            model.removeRow(jTableBill.getSelectedRow());
+            
+        }else {
+                JOptionPane.showMessageDialog(null, "Please Select a Row to Delete...", "Error...", JOptionPane.INFORMATION_MESSAGE);
+            }
+        
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void jTableBillKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableBillKeyPressed
@@ -605,9 +615,35 @@ public class SellingProducts extends javax.swing.JFrame {
             double total = price*quantity;
             
             int hold = jTableBill.getSelectedRow();
+            System.out.println(hold);
             
             jTableBill.setValueAt(total, hold, 3);
+            
         }
+        
+        DefaultTableModel model = (DefaultTableModel) jTableBill.getModel();
+        
+        int count = jTableBill.getRowCount();
+        double final_total = 0;
+        
+        for(int i=0;i < count;i++){
+            double price = (double) model.getValueAt(i, 3);
+            final_total = final_total+price;
+        }
+        
+        
+        double vat = (5*final_total)/100.0 ;
+        
+        String print = String.valueOf(vat);
+        
+        jLabelVat.setText(print);
+        
+        final_total = final_total + vat;
+        
+        print = String.valueOf(final_total);
+        
+        jLabelTotal.setText(print);
+        
         
     }//GEN-LAST:event_jTableBillKeyPressed
 
