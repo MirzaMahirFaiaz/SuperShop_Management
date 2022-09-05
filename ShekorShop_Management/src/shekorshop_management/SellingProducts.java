@@ -462,143 +462,14 @@ public class SellingProducts extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    Double totalAmount = 0.0;
-    Double cash = 0.0;
-    Double balance = 0.0;
-    Double bHeight = 0.0;
-
-    Graphics2D g2d;
+    
 
     ArrayList<String> itemName = new ArrayList<>();
     ArrayList<String> quantity = new ArrayList<>();
     ArrayList<String> itemPrice = new ArrayList<>();
     ArrayList<String> subtotal = new ArrayList<>();
 
-    protected static double cm_to_pp(double cm) {
-        return toPPI(cm * 0.393600787);
-    }
-
-    protected static double toPPI(double inch) {
-        return inch * 72d;
-    }
-
-    public PageFormat getPageFormat(PrinterJob pj) {
-
-        PageFormat pf = pj.defaultPage();
-        Paper paper = pf.getPaper();
-
-        double bodyHeight = bHeight;
-        double headerHeight = 5.0;
-        double footerHeight = 5.0;
-        double width = cm_to_pp(8);
-        double height = cm_to_pp(headerHeight + bodyHeight + footerHeight);
-        paper.setSize(width, height);
-        paper.setImageableArea(0, 10, width, height - cm_to_pp(1));
-
-        pf.setOrientation(PageFormat.PORTRAIT);
-        pf.setPaper(paper);
-
-        return pf;
-    }
-
-    public class BillCreate implements Printable {
-
-        public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
-                throws PrinterException {
-
-            int r = itemName.size();
-            ImageIcon icon = new ImageIcon("E:\\AUST\\CSE 3.1\\CSE 3104\\Project\\SuperShop_Management\\ShekorShop_Management\\src\\Images\\logoS135.png");
-            int result = NO_SUCH_PAGE;
-            if (pageIndex == 0) {
-
-                g2d = (Graphics2D) graphics;
-                double width = pageFormat.getImageableWidth();
-                g2d.translate((int) pageFormat.getImageableX(), (int) pageFormat.getImageableY());
-
-                //  FontMetrics metrics=g2d.getFontMetrics(new Font("Arial",Font.BOLD,7));
-                try {
-                    int y = 20;
-                    int yShift = 10;
-                    int headerRectHeight = 15;
-                    // int headerRectHeighta=40;
-
-                    g2d.setFont(new Font("SHEKOR", Font.PLAIN, 9));
-                    g2d.drawImage(icon.getImage(), 50, 20, 90, 30, rootPane);
-                    y += yShift + 30;
-                    g2d.drawString("-------------------------------------", 12, y);
-                    y += yShift;
-                    g2d.drawString("         shekor.com        ", 12, y);
-                    y += yShift;
-                    g2d.drawString("   Holding No. - 125 ", 12, y);
-                    y += yShift;
-                    g2d.drawString("   Dhaka,Bangladesh    ", 12, y);
-                    y += yShift;
-                    g2d.drawString("   www.facebook.com/shekor ", 12, y);
-                    y += yShift;
-                    g2d.drawString("        +8801723654789      ", 12, y);
-                    y += yShift;
-                    g2d.drawString("-------------------------------------", 12, y);
-                    y += headerRectHeight;
-
-                    g2d.drawString(" Item Name                  Price   ", 10, y);
-                    y += yShift;
-                    g2d.drawString("-------------------------------------", 10, y);
-                    y += headerRectHeight;
-
-                    for (int s = 0; s < r; s++) {
-                        g2d.drawString(" " + itemName.get(s) + "                            ", 10, y);
-                        y += yShift;
-                        g2d.drawString("      " + quantity.get(s) + " * " + itemPrice.get(s), 10, y);
-                        g2d.drawString(subtotal.get(s), 160, y);
-                        y += yShift;
-
-                    }
-
-                    g2d.drawString("-------------------------------------", 10, y);
-                    y += yShift;
-                    g2d.drawString(" Discount :               " + jTextFieldDiscount.getText() + "   ", 10, y);
-                    y += yShift;
-                    g2d.drawString("-------------------------------------", 10, y);
-                    y += yShift;
-                    g2d.drawString(" Vat      :               " + jLabelVat.getText() + "   ", 10, y);
-                    y += yShift;
-                    g2d.drawString("-------------------------------------", 10, y);
-                    y += yShift;
-                    g2d.drawString(" Total amount:            " + jLabelTotal.getText() + "   ", 10, y);
-                    y += yShift;
-
-                    g2d.drawString("*************************************", 10, y);
-                    y += yShift;
-                    g2d.drawString("       THANK YOU COME AGAIN            ", 10, y);
-                    y += yShift;
-                    g2d.drawString("*************************************", 10, y);
-                    y += yShift;
-                    g2d.drawString("       SOFTWARE BY:SHEKOR          ", 10, y);
-                    y += yShift;
-                    g2d.drawString("   CONTACT: contact@shekor.com       ", 10, y);
-                    y += yShift;
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                result = PAGE_EXISTS;
-            }
-            return result;
-        }
-    }
-
-    private void saveImageActionPerformed() {
-        JFileChooser filechooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG Images", "jpg");
-        filechooser.setFileFilter(filter);
-        int result = filechooser.showSaveDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File saveFile = filechooser.getSelectedFile();
-            //ImageIO.write( (RenderedImage)  RenderedImage.getData(g2d)  , "jpg", saveFile);
-        }
-    }
+    
 
     int index;
 
@@ -770,10 +641,14 @@ public class SellingProducts extends javax.swing.JFrame {
                     pid = rs.getInt("P_ID");
                     stock_quantity = rs.getInt("S_Quantity");
                 }
-
-                rem_quantity = rem_quantity - purchase_quantity;
-                stock_quantity = stock_quantity - purchase_quantity;
-
+                if( rem_quantity > purchase_quantity){
+                    rem_quantity = rem_quantity - purchase_quantity;
+                    stock_quantity = stock_quantity - purchase_quantity;
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Quantity Not Available...", "Error...", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
                 query = "Update S_chalan_P Set Remaining_Quantity = " + rem_quantity + " where Chalan_ID = " + cid;
                 //System.out.println(query);
                 ps = connection.prepareStatement(query);
@@ -903,7 +778,7 @@ public class SellingProducts extends javax.swing.JFrame {
                         + "S_Chalan_P.C_P_ID = Stock.P_ID "
                         + "inner join Chalan on "
                         + "S_Chalan_P.Chalan_ID = Chalan.Chalan_ID "
-                        + "where (Stock.P_ID = " + pid + " AND Exp_Date > '" + present_date + "' ) Order by Exp_Date ";
+                        + "where ( Stock.P_ID = " + pid + " AND Exp_Date > '" + present_date + "' AND  Remaining_Quantity >0  ) Order by Exp_Date ";
 
                 System.out.println(query);
 

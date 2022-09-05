@@ -41,48 +41,47 @@ public class Customer extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-    
-    void viewDataOnTable(ResultSet rs){
-        
+
+    void viewDataOnTable(ResultSet rs) {
+
         try {
-            
+
             DefaultTableModel model = (DefaultTableModel) jTableViewCustomer.getModel();
             model.setRowCount(0);
-            
+
             while (rs.next()) {
-                
+
                 int cid = rs.getInt("C_ID");
                 String cp = rs.getString("C_Phone");
                 String cn = rs.getString("C_Name");
                 String ca = rs.getString("C_Address");
-                
-                
+
                 Object[] row = new Object[4];
-                
+
                 row[0] = cid;
                 row[1] = cn;
                 row[2] = cp;
                 row[3] = ca;
-                
+
                 model.addRow(row);
-                
+
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    void clear(){
-        
+
+    void clear() {
+
         jTextFieldName.setText("");
         jTextFieldPhone.setText("");
         jTextFieldAddress.setText("");
-        
+
         jTextFieldSearchQuery.setText("");
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -359,15 +358,14 @@ public class Customer extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         dispose();
-        SellingProducts sp = new SellingProducts();
-        sp.setVisible(true);
+
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
 
         try {
             //String query = "SELECT * FROM Users WHERE USERNAME='" + jTextFieldSearchQuery.getText() + "' order by USERNAME";
-            String query = "SELECT * FROM Customer WHERE C_name LIKE '%"+jTextFieldSearchQuery.getText()+"%'";
+            String query = "SELECT * FROM Customer WHERE C_name LIKE '%" + jTextFieldSearchQuery.getText() + "%'";
             PreparedStatement ps;
 
             ps = connection.prepareStatement(query);
@@ -415,15 +413,14 @@ public class Customer extends javax.swing.JFrame {
     private void jTextFieldPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPhoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldPhoneActionPerformed
-    
+
     int cid;
-    
+
     private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
 
         if (jTableViewCustomer.getSelectedRowCount() != 0) {
 
             //setEnable(true);
-
             DefaultTableModel model = (DefaultTableModel) jTableViewCustomer.getModel();
 
             cid = (int) model.getValueAt(jTableViewCustomer.getSelectedRow(), 0);
@@ -435,9 +432,7 @@ public class Customer extends javax.swing.JFrame {
             jTextFieldPhone.setText(cp);
             jTextFieldAddress.setText(ca);
 
-        }
-        //jTextFieldDoB.setText((String) model.getValueAt(jTable.getSelectedRow(), 7));
-
+        } //jTextFieldDoB.setText((String) model.getValueAt(jTable.getSelectedRow(), 7));
         else {
             JOptionPane.showMessageDialog(null, "Please Select a Row to Edit...", "Error...", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -446,7 +441,6 @@ public class Customer extends javax.swing.JFrame {
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
 
         //setEnable(false);
-
         try {
 
             String cn = jTextFieldName.getText();
@@ -455,10 +449,8 @@ public class Customer extends javax.swing.JFrame {
 
             String query;
 
-           
-                query = "Update Customer Set C_Name ='"+cn+"', C_Phone='" + cp
-                + "',C_Address='" + ca + "' where C_ID = "+cid;
-            
+            query = "Update Customer Set C_Name ='" + cn + "', C_Phone='" + cp
+                    + "',C_Address='" + ca + "' where C_ID = " + cid;
 
             //System.out.println(query);
             PreparedStatement ps = connection.prepareStatement(query);
@@ -488,25 +480,33 @@ public class Customer extends javax.swing.JFrame {
             String cn = jTextFieldName.getText();
             String phone = jTextFieldPhone.getText();
             String address = jTextFieldAddress.getText();
+            String query = "";
+            if (phone.length() == 11) {
+                if (phone.startsWith("013") || phone.startsWith("014") || phone.startsWith("015") || phone.startsWith("016")
+                        || phone.startsWith("017") || phone.startsWith("018") || phone.startsWith("019")) {
+                    query = "Insert Into Customer Values ('" + phone + "','" + cn + "','" + address + "')";
+                    PreparedStatement ps = connection.prepareStatement(query);
+                    ps.executeUpdate();
 
-            String query = "Insert Into Customer Values ('"+phone+"','"+cn+"','"+address+"')" ;
+                    JOptionPane.showMessageDialog(null, "Add Successful...", "Info", JOptionPane.INFORMATION_MESSAGE);
+
+                    query = "Select * from Customer ";
+
+                    ps = connection.prepareStatement(query);
+                    ResultSet rs = ps.executeQuery();
+
+                    viewDataOnTable(rs);
+
+                    clear();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid Number...", "Error", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid Number...", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
 
             //System.out.println(query);
-
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Add Successful...", "Info", JOptionPane.INFORMATION_MESSAGE);
-
-            query = "Select * from Customer ";
-
-            ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-
-            viewDataOnTable(rs);
-
-            clear();
-
         } catch (SQLException ex) {
             Logger.getLogger(Edit_User.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Something Went Wrong...", "Error", JOptionPane.INFORMATION_MESSAGE);
